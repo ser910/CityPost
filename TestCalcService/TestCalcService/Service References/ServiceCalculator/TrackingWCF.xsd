@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/TrackingWCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TrackingWCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GuidValue" type="ser:guid" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="items" nillable="true" type="tns:ArrayOfCompositeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+  <xs:complexType name="ArrayOfCompositeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompositeItem" nillable="true" type="tns:CompositeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompositeItem" nillable="true" type="tns:ArrayOfCompositeItem" />
+  <xs:complexType name="CompositeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GuidValue" type="ser:guid" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeItem" nillable="true" type="tns:CompositeItem" />
+  <xs:complexType name="ReceiptInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CargoUnits" nillable="true" type="tns:ArrayOfCargoUnitInfo" />
+      <xs:element minOccurs="0" name="CityFromID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CityFromName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CityToID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CityToName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Days" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeliveryType" nillable="true" type="tns:DelivType" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReceiveWH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SendWH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptInfo" nillable="true" type="tns:ReceiptInfo" />
+  <xs:complexType name="ArrayOfCargoUnitInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CargoUnitInfo" nillable="true" type="tns:CargoUnitInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCargoUnitInfo" nillable="true" type="tns:ArrayOfCargoUnitInfo" />
+  <xs:complexType name="CargoUnitInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentWH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Volume" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CargoUnitInfo" nillable="true" type="tns:CargoUnitInfo" />
+  <xs:simpleType name="DelivType">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Warehouse">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Door">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warehouse_Warehouse">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warehouse_Door">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Door_Warehouse">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Door_Door">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DelivType" nillable="true" type="tns:DelivType" />
+  <xs:complexType name="ClientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelCountrycode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelMain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelSMS" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientInfo" nillable="true" type="tns:ClientInfo" />
+  <xs:complexType name="ReceiptCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Err" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Receipts" nillable="true" type="tns:ArrayOfReceiptInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptCollection" nillable="true" type="tns:ReceiptCollection" />
+  <xs:complexType name="ArrayOfReceiptInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceiptInfo" nillable="true" type="tns:ReceiptInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceiptInfo" nillable="true" type="tns:ArrayOfReceiptInfo" />
+  <xs:complexType name="GeographyCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfGeographyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeographyCollection" nillable="true" type="tns:GeographyCollection" />
+  <xs:complexType name="ArrayOfGeographyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GeographyInfo" nillable="true" type="tns:GeographyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGeographyInfo" nillable="true" type="tns:ArrayOfGeographyInfo" />
+  <xs:complexType name="GeographyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Indexes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Warehouses" nillable="true" type="tns:WarehouseCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeographyInfo" nillable="true" type="tns:GeographyInfo" />
+  <xs:complexType name="WarehouseCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfWarehouseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WarehouseCollection" nillable="true" type="tns:WarehouseCollection" />
+  <xs:complexType name="ArrayOfWarehouseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WarehouseInfo" nillable="true" type="tns:WarehouseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWarehouseInfo" nillable="true" type="tns:ArrayOfWarehouseInfo" />
+  <xs:complexType name="WarehouseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CityAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CityId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CityName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WarehouseInfo" nillable="true" type="tns:WarehouseInfo" />
+  <xs:complexType name="ServicesCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfServiceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServicesCollection" nillable="true" type="tns:ServicesCollection" />
+  <xs:complexType name="ArrayOfServiceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceInfo" nillable="true" type="tns:ServiceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceInfo" nillable="true" type="tns:ArrayOfServiceInfo" />
+  <xs:complexType name="ServiceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceInfo" nillable="true" type="tns:ServiceInfo" />
+</xs:schema>

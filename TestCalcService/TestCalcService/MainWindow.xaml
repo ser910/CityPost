@@ -1,0 +1,318 @@
+﻿<Window x:Class="TestCalcService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:local="clr-namespace:TestCalcService"
+        xmlns:remoute="clr-namespace:TestCalcService.ServiceCalculator"
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="Calculator" MinHeight="300" SizeToContent="Height" MinWidth="650" Width="1024">
+    <Window.DataContext>
+        <local:CalcModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisible"/>
+        <local:StringToDobleConverter x:Key="StringToDouble"/>
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Expander Header="Направление" IsExpanded="True">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="35*"/>
+                                <ColumnDefinition Width="35*"/>
+                                <ColumnDefinition Width="30*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel  Orientation="Horizontal" Grid.Column="0" Height="Auto" Width="Auto">
+                                <Label Content="Тип услуги:" Width="80" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"
+                                    ItemsSource="{Binding InputParams.DeliveryOptions}"
+                                    DisplayMemberPath="ComboBoxText"
+                                    SelectedValue="{Binding InputParams.SelectedDeliveryOption, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Height="Auto" Width="Auto">
+                                <Label Content="{Binding InputParams.LabelFrom}" Width="70" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <toolkit:AutoCompleteBox x:Name="from" Width="140" Height="23"
+                                     MinimumPrefixLength="2"
+                                     FilterMode="Contains"            
+                                     ItemsSource="{Binding InputParams.FromAddress}"
+                                     Text="{Binding InputParams.FromText, Mode=TwoWay}"
+                                     ValueMemberPath="Name"
+                                     SelectedItem="{Binding InputParams.SelectedFromAddress, Mode=OneWayToSource}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                </toolkit:AutoCompleteBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="2" Height="Auto" Width="Auto">
+                                <Label Content="{Binding InputParams.LabelTo}" Width="65" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <toolkit:AutoCompleteBox x:Name="to" Width="120" Height="23"
+                                     MinimumPrefixLength="2"
+                                     FilterMode="Contains"
+                                     ItemsSource="{Binding InputParams.ToAddress}"
+                                     Text="{Binding InputParams.ToText, Mode=TwoWay}"
+                                     ValueMemberPath="Name"
+                                     SelectedItem="{Binding InputParams.SelectedToAddress, Mode=OneWayToSource}"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center">
+                                </toolkit:AutoCompleteBox>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Height="Auto" Width="Auto">
+                            <TextBlock Text=" Сервис: " Width="80" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"
+                      ItemsSource="{Binding InputParams.Services}"
+                      DisplayMemberPath="Name"
+                      SelectedValue="{Binding InputParams.SelectedService, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <TextBlock Text="Для дальнейших действий. Введите направление." Margin="5,20" FontSize="20" Foreground="Red"
+                       Visibility="{Binding InputParams.Visible, Converter={StaticResource BoolToVisible}, ConverterParameter='Invert'}"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <TabControl Visibility="{Binding InputParams.Visible, Converter={StaticResource BoolToVisible}}">
+                            <TabItem Header="Калькулятор">
+                                <StackPanel >
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <Expander IsExpanded="True" Header="Список грузов">
+                                            <StackPanel>
+                                                <DataGrid Name = "listViewCargoUnits"
+                                          AlternatingRowBackground="Honeydew"
+                                          ItemsSource="{Binding RecCalc.CargoUnits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                          SelectedItem="{Binding RecCalc.SelectedCargoUnit, Mode=TwoWay}"
+                                          AutoGenerateColumns="False"
+                                          ColumnWidth="17*" 
+                                          RowEditEnding="listViewCargoUnits_RowEditEnding">
+                                                    <DataGrid.Resources>
+                                                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                                                        <Style x:Key="Tab" TargetType="{x:Type Button}">
+                                                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                                        </Style>
+                                                    </DataGrid.Resources>
+                                                    <DataGrid.Columns>
+                                                        <DataGridTemplateColumn Header="Тип">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid>
+                                                                        <TextBlock x:Name="selType" Text="{Binding SelEgType}" Visibility="Visible"/>
+                                                                        <TextBlock x:Name="tb" Text="Груз" Visibility="Hidden"/>
+                                                                    </Grid>
+                                                                    <DataTemplate.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=DataGridRow}}"
+                                                                     Value="{x:Static CollectionView.NewItemPlaceholder}">
+                                                                            <Setter TargetName="tb" Property="Visibility" Value="Visible"/>
+                                                                            <Setter TargetName="selType" Property="Visibility" Value="Hidden"/>
+                                                                        </DataTrigger>
+                                                                    </DataTemplate.Triggers>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                                <DataTemplate>
+                                                                    <ComboBox SelectedValuePath="Content"
+                                                                          SelectedValue="{Binding SelEgType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                                        <ComboBoxItem>Груз</ComboBoxItem>
+                                                                        <ComboBoxItem>Конверт 0,25кг</ComboBoxItem>
+                                                                        <ComboBoxItem>Конверт 0,50кг</ComboBoxItem>
+                                                                    </ComboBox>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="Длина, (см)"  
+                                                                        Binding="{Binding Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                            <DataGridTextColumn.EditingElementStyle >
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="IsEnabled" Value="{Binding FieldsEnabled, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.EditingElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTextColumn Header="Ширина, (см)" Binding="{Binding Width, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+                                                            <DataGridTextColumn.EditingElementStyle >
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="IsEnabled" Value="{Binding FieldsEnabled, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.EditingElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTextColumn Header="Высота, (см)" Binding="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+                                                            <DataGridTextColumn.EditingElementStyle >
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="IsEnabled" Value="{Binding FieldsEnabled, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.EditingElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTextColumn Header="Вес, (кг)"    Binding="{Binding WeightStr, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
+                                                            <DataGridTextColumn.EditingElementStyle >
+                                                                <Style TargetType="TextBox">
+                                                                    <Setter Property="IsEnabled" Value="{Binding FieldsEnabled, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.EditingElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTemplateColumn>
+                                                            <DataGridTemplateColumn.CellStyle>
+                                                                <Style TargetType="{x:Type DataGridCell}">
+                                                                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                                                </Style>
+                                                            </DataGridTemplateColumn.CellStyle>
+                                                            <DataGridTemplateColumn.CellTemplate >
+                                                                <DataTemplate>
+                                                                    <Button Style="{StaticResource Tab}" x:Name="btn" 
+                                                                Content="{Binding BtnText}" 
+                                                                CommandTarget="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                Click="Button_Click"/>
+                                                                    <DataTemplate.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=DataGridRow}}"
+                                                                                 Value="{x:Static CollectionView.NewItemPlaceholder}">
+                                                                            <Setter TargetName="btn" Property="Content" Value="Новая ЕГ" />
+                                                                            <Setter TargetName="btn" Property="IsEnabled" Value="False" />
+                                                                        </DataTrigger>
+                                                                    </DataTemplate.Triggers>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                                <Button x:Name="CalcBtn"
+                                                    Content="Рассчитать" Width="120" Height="23"
+                                                    Command="{Binding RecCalc.Calc}"
+                                                    CommandParameter="{Binding InputParams}"
+                                                    IsEnabled="{Binding RecCalc.BtnEnabled}"/>
+                                            </StackPanel>
+                                        </Expander>
+                                    </ScrollViewer>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <StackPanel Visibility="{Binding  RecCalc.Calculated}">
+                                            <Expander IsExpanded="True" Header="Таблица сервисов:">
+                                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                                    <TreeView ItemsSource="{Binding RecCalc.RecColl.Receipts}">
+                                                        <TreeView.Resources>
+                                                            <HierarchicalDataTemplate DataType="{x:Type remoute:ReceiptInfo}" ItemsSource="{Binding CargoUnits}" >
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="Сервис: "/>
+                                                                    <TextBlock Text="{Binding ServiceName}"/>
+                                                                    <TextBlock Text=" Цена: "/>
+                                                                    <TextBlock Text="{Binding Price, StringFormat={}{0:F2} руб.}"/>
+                                                                    <TextBlock Text=" Время доставки: "/>
+                                                                    <TextBlock Text="{Binding Days}"/>
+                                                                    <TextBlock Text=" суток."/>
+                                                                </StackPanel>
+                                                            </HierarchicalDataTemplate>
+                                                            <DataTemplate DataType="{x:Type remoute:CargoUnitInfo}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="Вес: "/>
+                                                                    <TextBlock Text="{Binding Weight, StringFormat={}{0:F2} кг.}"/>
+                                                                    <TextBlock Text=" Обьем: "/>
+                                                                    <TextBlock Text="{Binding Volume, StringFormat={}{0:F4} м3.}"/>
+                                                                    <TextBlock Text=" Цена: "/>
+                                                                    <TextBlock Text="{Binding Price, StringFormat={}{0:F2} руб.}"/>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </TreeView.Resources>
+                                                        <TreeView.ItemContainerStyle>
+                                                            <Style TargetType="{x:Type TreeViewItem}">
+                                                                <Setter Property="IsExpanded" Value="True"/>
+                                                            </Style>
+                                                        </TreeView.ItemContainerStyle>
+                                                    </TreeView>
+                                                </ScrollViewer>
+                                            </Expander>
+                                            <Expander IsExpanded="False" Header="Детализация:" >
+                                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                                    <StackPanel>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Label Content="Посчитано вариантов: "/>
+                                                            <Label Content="{Binding RecCalc.RecColl.Count}"/>
+                                                        </StackPanel>
+                                                        <Border BorderThickness="1" BorderBrush="Black">
+                                                            <ScrollViewer Width="Auto"  MinHeight="150" MaxHeight="500" VerticalScrollBarVisibility="Auto">
+                                                                <TextBlock  Text="{Binding RecCalc.RecColl.Details}" 
+                                                TextWrapping="Wrap"/>
+                                                            </ScrollViewer>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </ScrollViewer>
+                                            </Expander>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="Анализ тарифов">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition MinHeight="130" Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="33*"/>
+                                        <ColumnDefinition Width="33*"/>
+                                        <ColumnDefinition Width="33*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Height="Auto" Width="Auto">
+                                        <Label Content="Вес от:" Width="70" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Chart.StartWeight, UpdateSourceTrigger=LostFocus}" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" Height="Auto" Width="Auto">
+                                        <Label Content="Вес до:" Width="70" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Chart.EndWeight, UpdateSourceTrigger=LostFocus}" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="2" Height="Auto" Width="Auto">
+                                        <Label Content="Шаг:" Width="70" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Chart.DeltaWeight, UpdateSourceTrigger=LostFocus}" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <Button Grid.Row="1" Grid.Column="1"
+                                    Content="Старт" Width="120" Height="23"
+                                    Command="{Binding Chart.Calc}" CommandParameter="{Binding InputParams}"
+                                    Visibility="{Binding Chart.Visible, Converter={StaticResource BoolToVisible}}">
+                                    </Button>
+                                    <Button Grid.Row="1" Grid.Column="1"
+                                    Content="Отмена" Width="120" Height="23"
+                                    Command="{Binding Chart.Cancel}"
+                                    Visibility="{Binding Chart.Visible, Converter={StaticResource BoolToVisible}, ConverterParameter='Invert'}">
+                                    </Button>
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                                        <ScrollViewer MinHeight="300" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel>
+                                                <chart:Chart Width="Auto" Height="400" Name="lnChart"
+                                                             Visibility="{Binding Chart.ChartVisible, Converter={StaticResource BoolToVisible}}">
+                                                    <chart:Chart.Series>
+                                                        <chart:LineSeries DependentValuePath = "Value"
+                                                                  IndependentValuePath="Key" ItemsSource="{Binding Chart.Series[0].Series}"
+                                                                  IsSelectionEnabled="True"
+                                                                  Title="{Binding Chart.Series[0].Title}"/>
+                                                        <chart:LineSeries DependentValuePath = "Value"
+                                                                  IndependentValuePath="Key" ItemsSource="{Binding Chart.Series[1].Series}"
+                                                                  IsSelectionEnabled="True"
+                                                                  Title="{Binding Chart.Series[1].Title, NotifyOnSourceUpdated=True}"/>
+                                                        <chart:LineSeries DependentValuePath = "Value"
+                                                                  IndependentValuePath="Key" ItemsSource="{Binding Chart.Series[2].Series}"
+                                                                  IsSelectionEnabled="True"
+                                                                  Title="{Binding Chart.Series[2].Title, NotifyOnSourceUpdated=True}"/>
+                                                    </chart:Chart.Series>
+                                                </chart:Chart>
+                                                <ProgressBar Height="20" Minimum="{Binding Chart.StartWeight, Converter={StaticResource StringToDouble}}"
+                                             Maximum="{Binding Chart.EndWeight, Converter={StaticResource StringToDouble}}"
+                                             Value="{Binding Chart.CurrentWeight, Converter={StaticResource StringToDouble}}"
+                                             Visibility="{Binding Chart.Visible, Converter={StaticResource BoolToVisible}, ConverterParameter='Invert'}"/>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </ScrollViewer>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </ScrollViewer>
+</Window>

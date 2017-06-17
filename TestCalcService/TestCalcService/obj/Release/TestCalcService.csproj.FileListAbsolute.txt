@@ -1,0 +1,23 @@
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\TestCalcService.exe.config
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\TestCalcService.exe
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\TestCalcService.pdb
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\WPFToolkit.dll
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\MainWindow.g.cs
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\App.g.cs
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService_MarkupCompile.cache
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService_MarkupCompile.lref
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\MainWindow.baml
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.g.resources
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.Properties.Resources.resources
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.csproj.GenerateResource.Cache
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.exe
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.pdb
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\obj\Release\TestCalcService.csprojResolveAssemblyReference.cache
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\s.degtyar\Documents\Visual Studio 2015\Projects\TestCalcService\TestCalcService\bin\Release\System.Windows.Controls.DataVisualization.Toolkit.pdb
+d:\Sergey Degtyar\Diplom\TestCalcService\TestCalcService\bin\Release\TestCalcService.exe.config
+d:\Sergey Degtyar\Diplom\TestCalcService\TestCalcService\obj\Release\TestCalcService.exe
+d:\Sergey Degtyar\Diplom\TestCalcService\TestCalcService\obj\Release\TestCalcService.pdb

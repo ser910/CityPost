@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TrackingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/TrackingWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITrackingService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetDataByValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataByValue" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetDataByValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataByValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetDataByContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataByContract" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetDataByContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataByContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetContractDataByValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractDataByValue" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetContractDataByValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContractDataByValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetReceiptData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptData" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetReceiptData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetClientData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientData" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetClientData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetClientSentReceipts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientSentReceipts" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetClientSentReceipts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientSentReceiptsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetGeography_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeography" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetGeography_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeographyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServices" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_GetServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_CalculateReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReceipt" />
+  </wsdl:message>
+  <wsdl:message name="ITrackingService_CalculateReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateReceiptResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITrackingService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetData" message="tns:ITrackingService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetDataResponse" message="tns:ITrackingService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetDataByValue" message="tns:ITrackingService_GetDataByValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetDataByValueResponse" message="tns:ITrackingService_GetDataByValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetDataByContract" message="tns:ITrackingService_GetDataByContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetDataByContractResponse" message="tns:ITrackingService_GetDataByContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContractDataByValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetContractDataByValue" message="tns:ITrackingService_GetContractDataByValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetContractDataByValueResponse" message="tns:ITrackingService_GetContractDataByValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetReceiptData" message="tns:ITrackingService_GetReceiptData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetReceiptDataResponse" message="tns:ITrackingService_GetReceiptData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetClientData" message="tns:ITrackingService_GetClientData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetClientDataResponse" message="tns:ITrackingService_GetClientData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientSentReceipts">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetClientSentReceipts" message="tns:ITrackingService_GetClientSentReceipts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetClientSentReceiptsResponse" message="tns:ITrackingService_GetClientSentReceipts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeography">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetGeography" message="tns:ITrackingService_GetGeography_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetGeographyResponse" message="tns:ITrackingService_GetGeography_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetWarehouse" message="tns:ITrackingService_GetWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetWarehouseResponse" message="tns:ITrackingService_GetWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/GetServices" message="tns:ITrackingService_GetServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/GetServicesResponse" message="tns:ITrackingService_GetServices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackingService/CalculateReceipt" message="tns:ITrackingService_CalculateReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackingService/CalculateReceiptResponse" message="tns:ITrackingService_CalculateReceipt_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="pntSOAP" type="tns:ITrackingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByValue">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetDataByValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByContract">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetDataByContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContractDataByValue">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetContractDataByValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptData">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetReceiptData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientData">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetClientData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientSentReceipts">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetClientSentReceipts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeography">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetGeography" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/GetServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateReceipt">
+      <soap:operation soapAction="http://tempuri.org/ITrackingService/CalculateReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrackingService">
+    <wsdl:port name="pntSOAP" binding="tns:pntSOAP">
+      <soap:address location="http://192.168.100.22:1717/TrackingService.svc/SOAP" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
