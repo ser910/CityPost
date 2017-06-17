@@ -1,0 +1,31 @@
+<resources>
+    <string-array name="lb_from">
+        <item>Select one...</item>
+        <item>From PDO:</item>
+        <item>From city:</item>
+    </string-array>
+    <string-array name="lb_to">
+        <item>Select one...</item>
+        <item>To PDO:</item>
+        <item>To city:</item>
+    </string-array>
+    <string name="app_name">City post</string>
+    <string name="lb_fromWH">From PDO:</string>
+    <string name="lb_fromCity">From city:</string>
+    <string name="lb_toWH">To PDO:</string>
+    <string name="lb_toCity">To city:</string>
+    <string name="provider_gps">GPS</string>
+    <string name="provider_network">Network</string>
+    <string name="error">Error. App Use positioning</string>
+    <string name="apologize">Execution impossible</string>
+    <string name="location_settings">Positioning is disabled. Enable it?</string>
+    <string name="location_error">Location Error?</string>
+    <string name="lb_weight">Weight:</string>
+    <string name="weight">Input weight here...</string>
+    <string name="volume">Input volume here...</string>
+    <string name="lb_volume">Volume:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="lb_cost">Cost:</string>
+    <string name="btn_calc_txt">Calculate</string>
+</resources>

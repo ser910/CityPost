@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ru.cpost.citypost.MainActivity">
+
+    <Spinner
+        android:id="@+id/from_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/lb_fromWH" />
+
+    <LinearLayout
+        android:id="@+id/from_tab"
+        android:layout_below="@+id/from_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/from_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Выберите склад"/>
+        <ImageView
+            android:id="@+id/img_set_place_from"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="0"
+            android:src="@drawable/ic_set_place"
+            android:tint="@color/colorAccent" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/to_service_type"
+        android:layout_below="@+id/from_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/to_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/to_service_type">
+        <EditText
+            android:id="@+id/to_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Выберите склад" />
+        <ImageView
+            android:id="@+id/img_set_place_to"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="0"
+            android:src="@drawable/ic_set_place"
+            android:tint="@color/colorAccent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/weight_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/to_tab"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_weight" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/volume_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weight_tab"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_volume" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/volume" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/calc_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/volume_tab"
+        android:text="@string/btn_calc_txt" />
+
+    <Button
+        android:id="@+id/btnLocationSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="onClickLocationSettings"
+        android:text="@string/location_settings"></Button>
+</RelativeLayout>

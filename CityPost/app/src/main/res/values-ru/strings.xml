@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lb_from">
+        <item>Из ПВЗ:</item>
+        <item>Из города:</item>
+    </string-array>
+    <string-array name="lb_to">
+        <item>В ПВЗ:</item>
+        <item>В город:</item>
+    </string-array>
+    <string name="app_name">Сити почта</string>
+    <string name="lb_fromWH">Из ПВЗ:</string>
+    <string name="lb_fromCity">Из города:</string>
+    <string name="lb_toWH">В ПВЗ:</string>
+    <string name="lb_toCity">В город:</string>
+    <string name="provider_gps">GPS</string>
+    <string name="provider_network">Сеть</string>
+    <string name="error">Ошибка. Приложение использует позиционирование.</string>
+    <string name="apologize">Продолжение работы невозможно</string>
+    <string name="location_settings">Позиционирование выключено. Включить?</string>
+    <string name="location_error">ошибка позиционирования</string>
+    <string name="lb_weight">Вес:</string>
+    <string name="lb_volume">Обьем:</string>
+    <string name="volume">Введите вес...</string>
+    <string name="weight">Введите объем...</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="lb_cost">Стоимость:</string>
+    <string name="btn_calc_txt">Рассчитать</string>
+
+
+</resources>
