@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dpdService", "dpdService\dpdService.csproj", "{A28B34AA-6190-4943-B576-02758E181EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyTest", "ProxyTest\ProxyTest.csproj", "{42232930-B005-4A3E-9687-0162EF938E1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A28B34AA-6190-4943-B576-02758E181EB6} = {A28B34AA-6190-4943-B576-02758E181EB6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalc", "WebCalc\WebCalc.csproj", "{1137C8CC-3907-4023-8D25-E91A56FDBE8E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A28B34AA-6190-4943-B576-02758E181EB6} = {A28B34AA-6190-4943-B576-02758E181EB6}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A28B34AA-6190-4943-B576-02758E181EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28B34AA-6190-4943-B576-02758E181EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28B34AA-6190-4943-B576-02758E181EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28B34AA-6190-4943-B576-02758E181EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42232930-B005-4A3E-9687-0162EF938E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42232930-B005-4A3E-9687-0162EF938E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42232930-B005-4A3E-9687-0162EF938E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42232930-B005-4A3E-9687-0162EF938E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1137C8CC-3907-4023-8D25-E91A56FDBE8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1137C8CC-3907-4023-8D25-E91A56FDBE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1137C8CC-3907-4023-8D25-E91A56FDBE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1137C8CC-3907-4023-8D25-E91A56FDBE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs-test:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = dpdService\\dpdService.csproj
+		SccProjectName1 = dpdService
+		SccLocalPath1 = dpdService
+		SccProjectUniqueName2 = ProxyTest\\ProxyTest.csproj
+		SccProjectName2 = ProxyTest
+		SccLocalPath2 = ProxyTest
+		SccProjectUniqueName3 = WebCalc\\WebCalc.csproj
+		SccProjectName3 = WebCalc
+		SccLocalPath3 = WebCalc
+	EndGlobalSection
+EndGlobal

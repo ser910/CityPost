@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DpdService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DpdService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfcity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="city" type="tns:city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfcity" nillable="true" type="tns:ArrayOfcity" />
+  <xs:complexType name="city">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityId" type="xs:long" />
+      <xs:element minOccurs="0" name="cityName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="countryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="countryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:int" />
+      <xs:element minOccurs="0" name="regionName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="city" nillable="true" type="tns:city" />
+  <xs:complexType name="serviceCostRequest">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="auth" type="tns:auth" />
+      <xs:element minOccurs="0" name="declaredValue" type="xs:double" />
+      <xs:element minOccurs="0" name="delivery" type="tns:cityRequest" />
+      <xs:element minOccurs="0" name="maxCost" type="xs:double" />
+      <xs:element minOccurs="0" name="maxDays" type="xs:int" />
+      <xs:element minOccurs="0" name="pickup" type="tns:cityRequest" />
+      <xs:element minOccurs="0" name="pickupDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="pickupDateSpecified" type="xs:boolean" />
+      <xs:element minOccurs="0" name="selfDelivery" type="xs:boolean" />
+      <xs:element minOccurs="0" name="selfPickup" type="xs:boolean" />
+      <xs:element minOccurs="0" name="serviceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="volume" type="xs:double" />
+      <xs:element minOccurs="0" name="volumeSpecified" type="xs:boolean" />
+      <xs:element minOccurs="0" name="weight" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="serviceCostRequest" nillable="true" type="tns:serviceCostRequest" />
+  <xs:complexType name="auth">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="clientKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="clientNumber" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="auth" nillable="true" type="tns:auth" />
+  <xs:complexType name="cityRequest">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityId" type="xs:long" />
+      <xs:element minOccurs="0" name="cityName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="countryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="index" type="xs:int" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="cityRequest" nillable="true" type="tns:cityRequest" />
+  <xs:complexType name="ArrayOfserviceCost">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceCost" type="tns:serviceCost" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfserviceCost" nillable="true" type="tns:ArrayOfserviceCost" />
+  <xs:complexType name="serviceCost">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cost" type="xs:double" />
+      <xs:element minOccurs="0" name="days" type="xs:int" />
+      <xs:element minOccurs="0" name="serviceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="serviceCost" nillable="true" type="tns:serviceCost" />
+</xs:schema>
